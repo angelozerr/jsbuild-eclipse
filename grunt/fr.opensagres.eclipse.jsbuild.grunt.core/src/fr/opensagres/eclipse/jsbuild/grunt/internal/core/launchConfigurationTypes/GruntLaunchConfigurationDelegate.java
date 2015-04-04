@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.Platform;
+import org.eclipse.core.runtime.IPath;
 import org.eclipse.debug.core.ILaunchConfiguration;
 
 import fr.opensagres.eclipse.jsbuild.core.launchConfigurationTypes.JSBuildFileLaunchConfigurationDelegate;
@@ -27,8 +27,8 @@ public class GruntLaunchConfigurationDelegate extends
 		JSBuildFileLaunchConfigurationDelegate {
 
 	@Override
-	protected String[] getCmdLine(ILaunchConfiguration configuration)
-			throws CoreException {
+	protected String[] getCmdLine(ILaunchConfiguration configuration,
+			IPath location) throws CoreException {
 		List<String> cmdLine = new ArrayList<String>();
 		if (isWindowsOS()) {
 			// Windows OS, uses the grunt.cmd
@@ -36,6 +36,8 @@ public class GruntLaunchConfigurationDelegate extends
 		} else {
 			cmdLine.add("grunt");
 		}
+		cmdLine.add("--gruntfile");
+		cmdLine.add(location.toOSString());
 		cmdLine.add("--no-color");
 		String[] tasks = getTargetNames(configuration);
 		if (tasks != null) {

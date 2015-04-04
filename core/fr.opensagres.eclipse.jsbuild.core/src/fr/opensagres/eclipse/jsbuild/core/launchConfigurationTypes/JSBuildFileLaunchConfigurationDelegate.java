@@ -48,7 +48,7 @@ public abstract class JSBuildFileLaunchConfigurationDelegate extends
 			return;
 		}
 
-		String[] cmdLine = getCmdLine(configuration);
+		String[] cmdLine = getCmdLine(configuration, location);
 		String[] envp = getEnvironmentVariables(configuration);
 		Process p = DebugPlugin.exec(cmdLine, basedir, envp);
 		// no way to get private p.handle from java.lang.ProcessImpl
@@ -80,6 +80,6 @@ public abstract class JSBuildFileLaunchConfigurationDelegate extends
 
 	protected abstract String getProcessLabel();
 
-	protected abstract String[] getCmdLine(ILaunchConfiguration configuration)
-			throws CoreException;
+	protected abstract String[] getCmdLine(ILaunchConfiguration configuration,
+			IPath location) throws CoreException;
 }

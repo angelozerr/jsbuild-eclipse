@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IPath;
 import org.eclipse.debug.core.ILaunchConfiguration;
 
 import fr.opensagres.eclipse.jsbuild.core.launchConfigurationTypes.JSBuildFileLaunchConfigurationDelegate;
@@ -26,8 +27,8 @@ public class GulpLaunchConfigurationDelegate extends
 		JSBuildFileLaunchConfigurationDelegate {
 
 	@Override
-	protected String[] getCmdLine(ILaunchConfiguration configuration)
-			throws CoreException {
+	protected String[] getCmdLine(ILaunchConfiguration configuration,
+			IPath location) throws CoreException {
 		List<String> cmdLine = new ArrayList<String>();
 		cmdLine.add("gulp.cmd");
 		cmdLine.add("--no-color");
