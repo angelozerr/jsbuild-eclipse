@@ -6,6 +6,7 @@ import org.eclipse.core.externaltools.internal.launchConfigurations.ExternalTool
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.debug.core.DebugPlugin;
 import org.eclipse.debug.core.ILaunch;
 import org.eclipse.debug.core.ILaunchConfiguration;
@@ -66,6 +67,15 @@ public abstract class JSBuildFileLaunchConfigurationDelegate extends
 	protected String[] getTargetNames(ILaunchConfiguration configuration)
 			throws CoreException {
 		return AntLaunchingUtil.getTargetNames(configuration);
+	}
+
+	/**
+	 * Returns true if OS is Windows and false otherwise.
+	 * 
+	 * @return
+	 */
+	protected boolean isWindowsOS() {
+		return Platform.getOS().startsWith("win");
 	}
 
 	protected abstract String getProcessLabel();
