@@ -24,10 +24,11 @@ Those tern plugins are used too for JavaScript editor completion :
  
 # Installation
 
-`JavaScript Build file` Eclipse is developed/tested with Eclipse 4.4 Luna. It is advised to use Eclipse 4.4 Luna (even if AngularJS Eclipse could work with older version of Eclipse).
+`JavaScript Build Eclipse` Eclipse is developed/tested with Eclipse 4.4 Luna. It is advised to use Eclipse 4.4 Luna (even if AngularJS Eclipse could work with older version of Eclipse) : 
 
-To install `JavaScript Build file` Eclipse, please read [Installation - Update Site](https://github.com/angelozerr/jsbuild-eclipse/wiki/Installation-Update-Site) section.
+ * if you start with `JavaScript Build Eclipse`, please read [Getting Started]((https://github.com/angelozerr/jsbuild-eclipse/wiki/Getting-Started)).
+ * to install it, please read [Installation - Update Site](https://github.com/angelozerr/jsbuild-eclipse/wiki/Installation-Update-Site) section.
 
 # Build
 
-`JavaScript Build file` Eclipse is build with this [cloudbees job](https://opensagres.ci.cloudbees.com/job/jsbuild-eclipse/).
+`JavaScript Build Eclipse` Eclipse is build with this [cloudbees job](https://opensagres.ci.cloudbees.com/job/jsbuild-eclipse/).
