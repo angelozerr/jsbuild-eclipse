@@ -22,4 +22,20 @@
 	   </labelProvider>
 	</extension>
    
+   <extension point="org.eclipse.debug.ui.launchConfigurationTypeImages">
+     <launchConfigurationTypeImage
+        icon="icons/full/obj16/gruntfile.png"
+        configTypeID="fr.opensagres.eclipse.jsbuild.core.grunt"
+        id="fr.opensagres.eclipse.jsbuild.core.grunt.image">
+    </launchConfigurationTypeImage>
+  </extension>
+
+  <extension point="org.eclipse.debug.ui.launchConfigurationTabGroups">
+    <launchConfigurationTabGroup
+        type="fr.opensagres.eclipse.jsbuild.core.grunt"
+        class="fr.opensagres.eclipse.jsbuild.grunt.internal.ui.launchConfigurationTypes.GruntLaunchTabGroup"
+        id="fr.opensagres.eclipse.jsbuild.core.grunt.tabgroup">
+    </launchConfigurationTabGroup>
+  </extension>
+   
 </plugin>

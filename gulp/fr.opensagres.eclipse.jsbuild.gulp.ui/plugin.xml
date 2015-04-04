@@ -22,4 +22,20 @@
 	   </labelProvider>
 	</extension>
    
+   <extension point="org.eclipse.debug.ui.launchConfigurationTypeImages">
+     <launchConfigurationTypeImage
+        icon="icons/full/obj16/gulpfile.png"
+        configTypeID="fr.opensagres.eclipse.jsbuild.core.gulp"
+        id="fr.opensagres.eclipse.jsbuild.core.gulp.image">
+    </launchConfigurationTypeImage>
+  </extension>
+
+  <extension point="org.eclipse.debug.ui.launchConfigurationTabGroups">
+    <launchConfigurationTabGroup
+        type="fr.opensagres.eclipse.jsbuild.core.gulp"
+        class="fr.opensagres.eclipse.jsbuild.gulp.internal.ui.launchConfigurationTypes.GulpLaunchTabGroup"
+        id="fr.opensagres.eclipse.jsbuild.core.gulp.tabgroup">
+    </launchConfigurationTabGroup>
+  </extension>
+     
 </plugin>
