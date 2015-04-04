@@ -32,3 +32,7 @@ Those tern plugins are used too for JavaScript editor completion :
 # Build
 
 `JavaScript Build Eclipse` Eclipse is build with this [cloudbees job](https://opensagres.ci.cloudbees.com/job/jsbuild-eclipse/).
+
+# Development
+
+tern.java is used to load tasks from Gruntfile.js / gulpfile.js but **JavaScript Build Eclipse** is not linked to tern.java. You could develop a plugin which load tasks and after benefit with the Build explorer view, launch. Evry plugins which starts with  fr.opensagres.eclipse.jsbuild.* are not linked to tern.java.
