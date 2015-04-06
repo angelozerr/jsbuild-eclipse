@@ -30,7 +30,14 @@ public class GulpLaunchConfigurationDelegate extends
 	protected String[] getCmdLine(ILaunchConfiguration configuration,
 			IPath location) throws CoreException {
 		List<String> cmdLine = new ArrayList<String>();
-		cmdLine.add("gulp.cmd");
+		if (isWindowsOS()) {
+			// Windows OS, uses the gulp.cmd
+			cmdLine.add("gulp.cmd");
+		} else {
+			cmdLine.add("gulp");
+		}
+		cmdLine.add("--gulpfile");
+		cmdLine.add(location.toOSString());
 		cmdLine.add("--no-color");
 		String[] tasks = getTargetNames(configuration);
 		if (tasks != null) {
