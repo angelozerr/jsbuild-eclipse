@@ -12,8 +12,8 @@ package fr.opensagres.eclipse.jsbuild.internal.ui.launchConfigurations;
 
 import org.eclipse.osgi.util.NLS;
 
-public class AntLaunchConfigurationMessages extends NLS {
-	private static final String BUNDLE_NAME = "fr.opensagres.eclipse.jsbuild.internal.ui.launchConfigurations.AntLaunchConfigurationMessages";//$NON-NLS-1$
+public class JSBuildFileLaunchConfigurationMessages extends NLS {
+	private static final String BUNDLE_NAME = "fr.opensagres.eclipse.jsbuild.internal.ui.launchConfigurations.JSBuildFileLaunchConfigurationMessages";//$NON-NLS-1$
 
 	public static String AddVariableStringAction_1;
 	public static String AddVariableStringAction_2;
@@ -88,6 +88,6 @@ public class AntLaunchConfigurationMessages extends NLS {
 
 	static {
 		// load message values from bundle file
-		NLS.initializeMessages(BUNDLE_NAME, AntLaunchConfigurationMessages.class);
+		NLS.initializeMessages(BUNDLE_NAME, JSBuildFileLaunchConfigurationMessages.class);
 	}
 }

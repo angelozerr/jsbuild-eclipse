@@ -13,12 +13,14 @@ package fr.opensagres.eclipse.jsbuild.internal.ui.views;
 import java.util.Collection;
 import java.util.List;
 
+import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.Viewer;
 
 import fr.opensagres.eclipse.jsbuild.core.IJSBuildFileNode;
 import fr.opensagres.eclipse.jsbuild.core.ITask;
+import fr.opensagres.eclipse.jsbuild.core.JSBuildFileFactoryManager;
 import fr.opensagres.eclipse.jsbuild.internal.ui.Logger;
 
 /**
@@ -58,15 +60,22 @@ public class JSBuildFileContentProvider implements ITreeContentProvider {
 	 */
 	@Override
 	public Object[] getChildren(Object parentNode) {
-		if (parentNode instanceof IJSBuildFileNode) {
-			IJSBuildFileNode parentElement = (IJSBuildFileNode) parentNode;
+		IJSBuildFileNode buildFileNode = null;
+		if (parentNode instanceof IResource) {
+			buildFileNode = JSBuildFileFactoryManager
+					.tryToCreate((IResource) parentNode);
+		} else if (parentNode instanceof IJSBuildFileNode) {
+			buildFileNode = (IJSBuildFileNode) parentNode;
+		}
+
+		if (buildFileNode != null) {
 			try {
-				parentElement.getBuildFile().parseBuildFile();
+				buildFileNode.getBuildFile().parseBuildFile();
 			} catch (CoreException e) {
 				Logger.logException("Error while loading tasks", e);
 			}
-			if (parentElement.hasChildren()) {
-				Collection<ITask> children = parentElement.getChildNodes();
+			if (buildFileNode.hasChildren()) {
+				Collection<ITask> children = buildFileNode.getChildNodes();
 				return children.toArray();
 			}
 		}
@@ -94,7 +103,10 @@ public class JSBuildFileContentProvider implements ITreeContentProvider {
 	 */
 	@Override
 	public boolean hasChildren(Object element) {
-		return ((IJSBuildFileNode) element).hasChildren();
+		if (element instanceof IJSBuildFileNode) {
+			return ((IJSBuildFileNode) element).hasChildren();
+		}
+		return true;
 	}
 
 	/*

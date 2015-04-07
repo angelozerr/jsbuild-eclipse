@@ -38,4 +38,64 @@
     </launchConfigurationTabGroup>
   </extension>
      
+ <extension
+         point="org.eclipse.debug.ui.launchShortcuts">
+      <shortcut
+            category="org.eclipse.ui.externaltools"
+            class="fr.opensagres.eclipse.jsbuild.ui.launchConfigurations.JSBuildFileLaunchShortcut"
+            description="%GulpLaunchShortcut.description"
+            helpContextId="org.eclipse.ui.externaltools.launchShortcutHelpContext.gulpShortcut"
+            icon="icons/full/obj16/gulpfile.png"
+            id="fr.opensagres.eclipse.jsbuild.gulp.ui.GulpLaunchShortcut"
+            label="%GulpLaunchShortcut.label"
+            modes="run">
+        <contextualLaunch>
+           <enablement>
+             <with variable="selection">
+               <count value="1"/>
+               <iterate>
+                 <or>
+                   <test property="fr.opensagres.eclipse.jsbuild.core.isJSBuildFile" value="fr.opensagres.eclipse.jsbuild.core.gulp"/>
+                 </or>
+               </iterate>
+             </with>
+           </enablement>
+           <contextLabel
+         	  mode="run"
+         	  label="%GulpLaunchShortcut.label"/>
+  		 </contextualLaunch>
+        <configurationType
+              id="fr.opensagres.eclipse.jsbuild.core.gulp">
+        </configurationType>
+      </shortcut>
+      <shortcut
+            category="org.eclipse.ui.externaltools"
+            class="fr.opensagres.eclipse.jsbuild.ui.launchConfigurations.JSBuildFileLaunchShortcutWithDialog"
+            description="%GulpLaunchShortcutWithDialog.description"
+            helpContextId="org.eclipse.ui.externaltools.launchShortcutHelpContext.gulpShortcutWithDialog"
+            icon="icons/full/obj16/gulpfile.png"
+            id="fr.opensagres.eclipse.jsbuild.gulp.ui.GulpShortcutWithDialog"
+            label="%GulpLaunchShortcutWithDialog.label"
+            modes="run">
+        <contextualLaunch>
+           <enablement>
+             <with variable="selection">
+               <count value="1"/>
+               <iterate>
+                 <or>
+					<test property="fr.opensagres.eclipse.jsbuild.core.isJSBuildFile" value="fr.opensagres.eclipse.jsbuild.core.gulp"/>
+                 </or>
+               </iterate>
+             </with>
+           </enablement>
+           <contextLabel
+         	  mode="run"
+         	  label="%GulpLaunchShortcutWithDialog.label"/>          
+  		 </contextualLaunch>
+        <configurationType
+              id="fr.opensagres.eclipse.jsbuild.core.gulp">
+        </configurationType>
+      </shortcut>
+   </extension>
+           
 </plugin>

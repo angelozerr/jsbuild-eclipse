@@ -11,6 +11,7 @@
 package fr.opensagres.eclipse.jsbuild.core;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IResource;
 
 import fr.opensagres.eclipse.jsbuild.internal.core.JSBuildFileFactoriesRegistryReader;
 
@@ -44,5 +45,17 @@ public class JSBuildFileFactoryManager {
 	public static IJSBuildFile create(IFile file, String factoryId) {
 		return JSBuildFileFactoriesRegistryReader.getInstance().create(file,
 				factoryId);
+	}
+
+	public static IJSBuildFileNode tryToCreate(IResource resource) {
+		if (resource == null || resource.getType() != IResource.FILE) {
+			return null;
+		}
+		IFile file = (IFile) resource;
+		String factoryId = findFactoryId(file);
+		if (factoryId == null) {
+			return null;
+		}
+		return create(file, factoryId);
 	}
 }

@@ -17,4 +17,14 @@
 	<extension-point id="jsBuildFactories" name="%jsBuildFactories.name"
 		schema="schema/jsBuildFactories.exsd" />
 		  
+	<extension point="org.eclipse.core.expressions.propertyTesters">
+		<propertyTester
+			id="fr.opensagres.eclipse.jsbuild.core.JSBuildFileTester"
+			type="org.eclipse.core.resources.IResource"
+			namespace="fr.opensagres.eclipse.jsbuild.core"
+			properties="isJSBuildFile"
+			class="fr.opensagres.eclipse.jsbuild.internal.core.JSBuildFileTester">
+		</propertyTester>
+	</extension>
+			  
 </plugin>

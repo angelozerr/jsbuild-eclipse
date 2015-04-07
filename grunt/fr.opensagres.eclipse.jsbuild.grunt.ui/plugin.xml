@@ -38,4 +38,64 @@
     </launchConfigurationTabGroup>
   </extension>
    
+ <extension
+         point="org.eclipse.debug.ui.launchShortcuts">
+      <shortcut
+            category="org.eclipse.ui.externaltools"
+            class="fr.opensagres.eclipse.jsbuild.ui.launchConfigurations.JSBuildFileLaunchShortcut"
+            description="%GruntLaunchShortcut.description"
+            helpContextId="org.eclipse.ui.externaltools.launchShortcutHelpContext.gruntShortcut"
+            icon="icons/full/obj16/gruntfile.png"
+            id="fr.opensagres.eclipse.jsbuild.grunt.ui.GruntLaunchShortcut"
+            label="%GruntLaunchShortcut.label"
+            modes="run">
+        <contextualLaunch>
+           <enablement>
+             <with variable="selection">
+               <count value="1"/>
+               <iterate>
+                 <or>
+                   <test property="fr.opensagres.eclipse.jsbuild.core.isJSBuildFile" value="fr.opensagres.eclipse.jsbuild.core.grunt"/>
+                 </or>
+               </iterate>
+             </with>
+           </enablement>
+           <contextLabel
+         	  mode="run"
+         	  label="%GruntLaunchShortcut.label"/>
+  		 </contextualLaunch>
+        <configurationType
+              id="fr.opensagres.eclipse.jsbuild.core.grunt">
+        </configurationType>
+      </shortcut>
+      <shortcut
+            category="org.eclipse.ui.externaltools"
+            class="fr.opensagres.eclipse.jsbuild.ui.launchConfigurations.JSBuildFileLaunchShortcutWithDialog"
+            description="%GruntLaunchShortcutWithDialog.description"
+            helpContextId="org.eclipse.ui.externaltools.launchShortcutHelpContext.gruntShortcutWithDialog"
+            icon="icons/full/obj16/gruntfile.png"
+            id="fr.opensagres.eclipse.jsbuild.grunt.ui.GruntShortcutWithDialog"
+            label="%GruntLaunchShortcutWithDialog.label"
+            modes="run">
+        <contextualLaunch>
+           <enablement>
+             <with variable="selection">
+               <count value="1"/>
+               <iterate>
+                 <or>
+					<test property="fr.opensagres.eclipse.jsbuild.core.isJSBuildFile" value="fr.opensagres.eclipse.jsbuild.core.grunt"/>
+                 </or>
+               </iterate>
+             </with>
+           </enablement>
+           <contextLabel
+         	  mode="run"
+         	  label="%GruntLaunchShortcutWithDialog.label"/>          
+  		 </contextualLaunch>
+        <configurationType
+              id="fr.opensagres.eclipse.jsbuild.core.grunt">
+        </configurationType>
+      </shortcut>
+   </extension>
+      
 </plugin>

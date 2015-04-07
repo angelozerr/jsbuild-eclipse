@@ -27,8 +27,8 @@ import fr.opensagres.eclipse.jsbuild.core.IJSBuildFileNode;
 import fr.opensagres.eclipse.jsbuild.core.ITask;
 import fr.opensagres.eclipse.jsbuild.internal.ui.IJSBuildFileUIHelpContextIds;
 import fr.opensagres.eclipse.jsbuild.internal.ui.ImageResource;
-import fr.opensagres.eclipse.jsbuild.internal.ui.launchConfigurations.AntLaunchShortcut;
 import fr.opensagres.eclipse.jsbuild.internal.ui.views.JSBuildFileView;
+import fr.opensagres.eclipse.jsbuild.ui.launchConfigurations.JSBuildFileLaunchShortcut;
 
 /**
  * Action which runs the selected target or the default target of the selected
@@ -86,10 +86,10 @@ public class RunTaskAction extends Action implements IUpdate {
 	 * 
 	 * @param node
 	 *            the node to use to launch
-	 * @see AntLaunchShortcut#launch(AntElementNode, String)
+	 * @see JSBuildFileLaunchShortcut#launch(AntElementNode, String)
 	 */
 	public void launch(IJSBuildFileNode node) {
-		AntLaunchShortcut shortcut = new AntLaunchShortcut();
+		JSBuildFileLaunchShortcut shortcut = new JSBuildFileLaunchShortcut();
 		shortcut.setShowDialog(false);
 		shortcut.launch(node, ILaunchManager.RUN_MODE);
 	}

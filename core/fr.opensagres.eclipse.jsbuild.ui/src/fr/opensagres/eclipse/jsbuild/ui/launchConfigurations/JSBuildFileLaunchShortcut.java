@@ -8,7 +8,7 @@
  *  Contributors:
  *  Angelo Zerr <angelo.zerr@gmail.com> - initial API and implementation
  */
-package fr.opensagres.eclipse.jsbuild.internal.ui.launchConfigurations;
+package fr.opensagres.eclipse.jsbuild.ui.launchConfigurations;
 
 import java.text.MessageFormat;
 import java.util.ArrayList;
@@ -42,7 +42,6 @@ import org.eclipse.jface.window.Window;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
-import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.dialogs.ElementListSelectionDialog;
 import org.eclipse.ui.externaltools.internal.launchConfigurations.ExternalToolsUtil;
 import org.eclipse.ui.externaltools.internal.model.IExternalToolConstants;
@@ -50,19 +49,20 @@ import org.eclipse.ui.externaltools.internal.model.IExternalToolConstants;
 import fr.opensagres.eclipse.jsbuild.core.IJSBuildFile;
 import fr.opensagres.eclipse.jsbuild.core.IJSBuildFileNode;
 import fr.opensagres.eclipse.jsbuild.core.ITask;
+import fr.opensagres.eclipse.jsbuild.core.JSBuildFileFactoryManager;
 import fr.opensagres.eclipse.jsbuild.core.launchConfigurationTypes.IAntLaunchConstants;
 import fr.opensagres.eclipse.jsbuild.internal.ui.JSBuildFileUIPlugin;
 import fr.opensagres.eclipse.jsbuild.internal.ui.JSBuildFileUtil;
+import fr.opensagres.eclipse.jsbuild.internal.ui.launchConfigurations.JSBuildFileLaunchConfigurationMessages;
 
 /**
  * This class provides the Run/Debug As -> JavaScript Build launch shortcut.
  * 
  */
-public class AntLaunchShortcut implements ILaunchShortcut2 {
+public class JSBuildFileLaunchShortcut implements ILaunchShortcut2 {
 
 	private boolean fShowDialog = false;
 	private static final int MAX_TARGET_APPEND_LENGTH = 30;
-	private static final String DEFAULT_TARGET = "default"; //$NON-NLS-1$
 
 	/**
 	 * Status code used by the 'Run Ant' status handler which is invoked when
@@ -87,20 +87,24 @@ public class AntLaunchShortcut implements ILaunchShortcut2 {
 					launch((IJSBuildFileNode) object, mode);
 					return;
 				}
-				/*
-				 * IResource resource = (IResource) ((IAdaptable) object)
-				 * .getAdapter(IResource.class); if (resource != null) { if
-				 * (!(JSBuildFileUtil.isKnownJSBuildFile(resource))) { /* if
-				 * (!JSBuildFileUtil.isKnownBuildfileName(resource.getName ()))
-				 * { if (resource.getType() == IResource.FILE) { resource =
-				 * resource.getParent(); } resource = findBuildFile((IContainer)
-				 * resource); }
-				 */
-				/*
-				 * } if (resource != null) { IFile file = (IFile) resource;
-				 * launch(file.getFullPath(), file.getProject(), mode, null);
-				 * return; } }
-				 */
+
+				IResource resource = (IResource) ((IAdaptable) object)
+						.getAdapter(IResource.class);
+				if (resource != null) {
+					String factoryId = null;
+					if (resource.getType() == IResource.FILE) {
+						factoryId = JSBuildFileFactoryManager
+								.findFactoryId((IFile) resource);
+					}
+
+					if (resource != null && factoryId != null) {
+						IFile file = (IFile) resource;
+						launch(file.getFullPath(), file.getProject(), mode,
+								null, factoryId);
+						return;
+					}
+				}
+
 			}
 		}
 		antFileNotFound();
@@ -160,7 +164,8 @@ public class AntLaunchShortcut implements ILaunchShortcut2 {
 	 * Inform the user that an ant file was not found to run.
 	 */
 	private void antFileNotFound() {
-		reportError(AntLaunchConfigurationMessages.AntLaunchShortcut_Unable,
+		reportError(
+				JSBuildFileLaunchConfigurationMessages.AntLaunchShortcut_Unable,
 				null);
 	}
 
@@ -341,7 +346,7 @@ public class AntLaunchShortcut implements ILaunchShortcut2 {
 			} catch (CoreException exception) {
 				reportError(
 						MessageFormat.format(
-								AntLaunchConfigurationMessages.AntLaunchShortcut_Exception_launching,
+								JSBuildFileLaunchConfigurationMessages.AntLaunchShortcut_Exception_launching,
 								new Object[] { filePath.toFile().getName() }),
 						exception);
 				return;
@@ -445,7 +450,7 @@ public class AntLaunchShortcut implements ILaunchShortcut2 {
 			return workingCopy.doSave();
 		} catch (CoreException e) {
 			reportError(MessageFormat.format(
-					AntLaunchConfigurationMessages.AntLaunchShortcut_2,
+					JSBuildFileLaunchConfigurationMessages.AntLaunchShortcut_2,
 					new Object[] { filePath.toString() }), e);
 		}
 		return null;
@@ -484,7 +489,7 @@ public class AntLaunchShortcut implements ILaunchShortcut2 {
 						}
 					} catch (CoreException e) {
 						reportError(
-								AntLaunchConfigurationMessages.AntLaunchShortcut_3,
+								JSBuildFileLaunchConfigurationMessages.AntLaunchShortcut_3,
 								e);
 					}
 				}
@@ -512,8 +517,8 @@ public class AntLaunchShortcut implements ILaunchShortcut2 {
 				Display.getDefault().getActiveShell(), labelProvider);
 		dialog.setElements(configs.toArray(new ILaunchConfiguration[configs
 				.size()]));
-		dialog.setTitle(AntLaunchConfigurationMessages.AntLaunchShortcut_4);
-		dialog.setMessage(AntLaunchConfigurationMessages.AntLaunchShortcut_5);
+		dialog.setTitle(JSBuildFileLaunchConfigurationMessages.AntLaunchShortcut_4);
+		dialog.setMessage(JSBuildFileLaunchConfigurationMessages.AntLaunchShortcut_5);
 		dialog.setMultipleSelection(false);
 		int result = dialog.open();
 		labelProvider.dispose();
@@ -577,8 +582,8 @@ public class AntLaunchShortcut implements ILaunchShortcut2 {
 				.openError(
 						JSBuildFileUIPlugin.getActiveWorkbenchWindow()
 								.getShell(),
-						AntLaunchConfigurationMessages.AntLaunchShortcut_Error_7,
-						AntLaunchConfigurationMessages.AntLaunchShortcut_Build_Failed_2,
+						JSBuildFileLaunchConfigurationMessages.AntLaunchShortcut_Error_7,
+						JSBuildFileLaunchConfigurationMessages.AntLaunchShortcut_Build_Failed_2,
 						status);
 	}
 
