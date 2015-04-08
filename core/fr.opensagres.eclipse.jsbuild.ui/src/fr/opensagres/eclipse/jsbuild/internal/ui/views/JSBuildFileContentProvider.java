@@ -93,7 +93,10 @@ public class JSBuildFileContentProvider implements ITreeContentProvider {
 	 */
 	@Override
 	public Object getParent(Object element) {
-		return ((IJSBuildFileNode) element).getParentNode();
+		if (element instanceof IJSBuildFileNode) {
+			return ((IJSBuildFileNode) element).getParentNode();
+		}
+		return null;
 	}
 
 	/*
