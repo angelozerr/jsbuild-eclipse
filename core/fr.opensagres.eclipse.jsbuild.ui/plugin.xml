@@ -69,7 +69,10 @@
 	
 	<extension
 	      point="org.eclipse.ui.actionSets">
-	  <actionSet>
+	  <actionSet 
+	  		label="%jsBuildFileActionSet.label"
+            visible="false"
+            id="fr.opensagres.eclipse.jsbuild.ui.actionSet.presentation">
 	      <action
                definitionId="fr.opensagres.eclipse.jsbuild.ui.edit.text.task.open.editor"
                label="%OpenAction.label"
@@ -87,6 +90,7 @@
 		<viewerContentBinding viewerId="org.eclipse.ui.navigator.ProjectExplorer">
 			<includes>
 				<contentExtension pattern="fr.opensagres.eclipse.jsbuild.ui.jsBuildFileContent" />
+				<contentExtension pattern="fr.opensagres.eclipse.jsbuild.ui.taskLinkHelper" />
 			</includes>
 		</viewerContentBinding>
 	</extension>
@@ -126,7 +130,7 @@
                  			<instanceof	value="org.eclipse.core.resources.IResource" />
 							<test property="fr.opensagres.eclipse.jsbuild.core.isJSBuildFile" />
 						</and>
-						<instanceof value="fr.opensagres.eclipse.jsbuild.core.ITask" />
+						<instanceof value="fr.opensagres.eclipse.jsbuild.core.IJSBuildFileNode" />
 					</or>
 				</enablement>
 			</actionProvider>
@@ -224,4 +228,22 @@
 		</navigatorContent>
    </extension>
            
+   <extension
+       point="org.eclipse.ui.navigator.linkHelper">
+		<linkHelper
+	          class="fr.opensagres.eclipse.jsbuild.internal.ui.navigator.TaskLinkHelper"
+	          id="fr.opensagres.eclipse.jsbuild.ui.taskLinkHelper">          
+	         <editorInputEnablement>
+		         <or> 
+		         	<instanceof value="org.eclipse.ui.IFileEditorInput" />
+		         </or>
+	         </editorInputEnablement>
+	         <selectionEnablement>
+	         	<or>
+					<instanceof value="fr.opensagres.eclipse.jsbuild.core.IJSBuildFileNode" />
+				</or>
+	         </selectionEnablement>
+      </linkHelper>          
+   </extension>
+              
 </plugin>

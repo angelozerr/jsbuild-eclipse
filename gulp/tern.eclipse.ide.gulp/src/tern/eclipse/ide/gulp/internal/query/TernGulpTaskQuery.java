@@ -5,6 +5,7 @@ import org.eclipse.core.resources.IFile;
 import tern.ITernFile;
 import tern.eclipse.ide.core.IIDETernProject;
 import tern.eclipse.ide.core.TernCorePlugin;
+import tern.eclipse.ide.core.resources.TernTextFile;
 import tern.eclipse.ide.gulp.internal.Logger;
 import tern.server.protocol.TernQuery;
 import tern.server.protocol.definition.ITernDefinitionCollector;
@@ -18,18 +19,20 @@ public class TernGulpTaskQuery extends TernQuery {
 		super.add("name", name);
 	}
 
-	public static Location getLocation(ITask task) {
+	public static Location getLocation(ITask task, String text) {
 		IFile gulpFile = task.getBuildFile().getBuildFileResource();
 		String taskName = task.getName();
-		return getLocation(gulpFile, taskName);
+		return getLocation(gulpFile, taskName, text);
 	}
 
-	public static Location getLocation(IFile gulpFile, String taskName) {
+	public static Location getLocation(IFile gulpFile, String taskName,
+			String text) {
 		try {
 			IIDETernProject ternProject = TernCorePlugin
 					.getTernProject(gulpFile.getProject());
 			TernGulpTaskQuery query = new TernGulpTaskQuery(taskName);
-			ITernFile ternFile = ternProject.getFile(gulpFile);
+			ITernFile ternFile = text != null ? new TernTextFile(gulpFile, text)
+					: ternProject.getFile(gulpFile);
 			query.setFile(ternFile.getFileName());
 			LocationCollector collector = new LocationCollector();
 			ternProject.request(query, ternFile, collector);

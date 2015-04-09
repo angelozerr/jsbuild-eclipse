@@ -13,8 +13,8 @@ public class GulpTask extends SimpleTask implements IGulpTask {
 	}
 
 	@Override
-	public Location getLocation() {
-		return TernGulpTaskQuery.getLocation(this);
+	public Location getLocation(String text) {
+		return TernGulpTaskQuery.getLocation(this, text);
 	}
 
 }

@@ -26,8 +26,8 @@ public class GruntTask extends CompositeTask implements IGruntTask {
 	}
 	
 	@Override
-	public Location getLocation() {
-		return TernGruntTaskQuery.getLocation(this);
+	public Location getLocation(String text) {
+		return TernGruntTaskQuery.getLocation(this, text);
 	}
 
 }

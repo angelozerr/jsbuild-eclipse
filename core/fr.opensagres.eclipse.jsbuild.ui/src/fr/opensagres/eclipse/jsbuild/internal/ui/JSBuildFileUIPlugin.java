@@ -12,6 +12,7 @@ package fr.opensagres.eclipse.jsbuild.internal.ui;
 
 import org.eclipse.jface.dialogs.IDialogSettings;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
@@ -100,6 +101,10 @@ public class JSBuildFileUIPlugin extends AbstractUIPlugin {
 	 */
 	public static IWorkbenchWindow getActiveWorkbenchWindow() {
 		return getDefault().getWorkbench().getActiveWorkbenchWindow();
+	}
+
+	public static IWorkbenchPage getActivePage() {
+		return getActiveWorkbenchWindow().getActivePage();
 	}
 
 }

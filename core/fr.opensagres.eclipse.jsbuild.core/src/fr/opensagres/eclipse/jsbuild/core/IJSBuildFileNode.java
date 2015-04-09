@@ -74,8 +74,9 @@ public interface IJSBuildFileNode {
 
 	/**
 	 * Returns the location of the node and null otherwise.
+	 * @param document 
 	 * 
 	 * @return the location of the node and null otherwise.
 	 */
-	Location getLocation();
+	Location getLocation(String text);
 }

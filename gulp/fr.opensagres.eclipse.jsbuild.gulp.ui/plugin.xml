@@ -55,8 +55,11 @@
                <count value="1"/>
                <iterate>
                  <or>
-                   <test property="fr.opensagres.eclipse.jsbuild.core.isJSBuildFile" value="fr.opensagres.eclipse.jsbuild.core.gulp"/>
-                 </or>
+					<and>
+                 		<instanceof	value="org.eclipse.core.resources.IResource" />
+						<test property="fr.opensagres.eclipse.jsbuild.core.isJSBuildFile" value="fr.opensagres.eclipse.jsbuild.core.gulp" />
+					</and>									
+				 </or>
                </iterate>
              </with>
            </enablement>
@@ -83,8 +86,11 @@
                <count value="1"/>
                <iterate>
                  <or>
-					<test property="fr.opensagres.eclipse.jsbuild.core.isJSBuildFile" value="fr.opensagres.eclipse.jsbuild.core.gulp"/>
-                 </or>
+					<and>
+                 		<instanceof	value="org.eclipse.core.resources.IResource" />
+						<test property="fr.opensagres.eclipse.jsbuild.core.isJSBuildFile" value="fr.opensagres.eclipse.jsbuild.core.gulp" />
+					</and>
+				 </or>
                </iterate>
              </with>
            </enablement>

@@ -5,6 +5,7 @@ import org.eclipse.core.resources.IFile;
 import tern.ITernFile;
 import tern.eclipse.ide.core.IIDETernProject;
 import tern.eclipse.ide.core.TernCorePlugin;
+import tern.eclipse.ide.core.resources.TernTextFile;
 import tern.eclipse.ide.grunt.internal.Logger;
 import tern.server.protocol.TernQuery;
 import tern.server.protocol.definition.ITernDefinitionCollector;
@@ -18,18 +19,20 @@ public class TernGruntTaskQuery extends TernQuery {
 		super.add("name", name);
 	}
 
-	public static Location getLocation(ITask task) {
+	public static Location getLocation(ITask task, String text) {
 		IFile gruntFile = task.getBuildFile().getBuildFileResource();
 		String taskName = task.getName();
-		return getLocation(gruntFile, taskName);
+		return getLocation(gruntFile, taskName, text);
 	}
 
-	public static Location getLocation(IFile gruntFile, String taskName) {
+	public static Location getLocation(IFile gruntFile, String taskName,
+			String text) {
 		try {
 			IIDETernProject ternProject = TernCorePlugin
 					.getTernProject(gruntFile.getProject());
 			TernGruntTaskQuery query = new TernGruntTaskQuery(taskName);
-			ITernFile ternFile = ternProject.getFile(gruntFile);
+			ITernFile ternFile = text != null ? new TernTextFile(gruntFile,
+					text) : ternProject.getFile(gruntFile);
 			query.setFile(ternFile.getFileName());
 			LocationCollector collector = new LocationCollector();
 			ternProject.request(query, ternFile, collector);

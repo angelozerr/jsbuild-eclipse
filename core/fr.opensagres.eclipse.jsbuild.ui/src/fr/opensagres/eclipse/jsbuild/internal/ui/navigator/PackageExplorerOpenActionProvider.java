@@ -60,8 +60,8 @@ public class PackageExplorerOpenActionProvider extends CommonActionProvider {
 					fOpenAndExpand = new OpenAndExpand(workbenchSite.getSite(),
 							(OpenAction) fOpenGroup.getOpenAction(),
 							(TreeViewer) site.getStructuredViewer());
-					fOpenAndExpand
-							.setActionDefinitionId("org.eclipse.wst.jsdt.ui.edit.text.java.openandexpand"); // Make
+					//fOpenAndExpand
+					//		.setActionDefinitionId("fr.opensagres.eclipse.jsbuild.ui.openandexpand"); // Make
 																											// this
 																											// different
 																											// from

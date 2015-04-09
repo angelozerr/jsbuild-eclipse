@@ -43,7 +43,7 @@ public class GruntTarget extends SimpleTask implements IGruntTarget {
 	}
 
 	@Override
-	public Location getLocation() {
-		return TernGruntTaskQuery.getLocation(this);
+	public Location getLocation(String text) {
+		return TernGruntTaskQuery.getLocation(this, text);
 	}
 }

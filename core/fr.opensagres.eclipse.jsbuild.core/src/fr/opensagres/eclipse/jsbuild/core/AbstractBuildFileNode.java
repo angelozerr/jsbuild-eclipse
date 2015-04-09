@@ -27,7 +27,7 @@ public abstract class AbstractBuildFileNode implements IJSBuildFileNode {
 	}
 
 	@Override
-	public Location getLocation() {
+	public Location getLocation(String text) {
 		return null;
 	}
 }
