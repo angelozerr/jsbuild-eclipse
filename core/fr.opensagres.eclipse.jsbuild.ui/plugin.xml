@@ -58,6 +58,31 @@
   </extension>
         
 	<extension
+      	point="org.eclipse.ui.commands">
+      	<command
+            name="%ActionDefinition.openEditor.name"
+            description="%ActionDefinition.openEditor.description"
+            categoryId="org.eclipse.ui.category.navigate"
+            id="fr.opensagres.eclipse.jsbuild.ui.edit.text.task.open.editor">
+      	</command>      
+	</extension>
+	
+	<extension
+	      point="org.eclipse.ui.actionSets">
+	  <actionSet>
+	      <action
+               definitionId="fr.opensagres.eclipse.jsbuild.ui.edit.text.task.open.editor"
+               label="%OpenAction.label"
+               tooltip="%OpenAction.tooltip"
+               retarget="true"
+               menubarPath="navigate/open.ext"
+               allowLabelUpdate="true"
+               id="fr.opensagres.eclipse.jsbuildt.ui.actions.Open">
+         </action>
+      </actionSet>
+   	</extension>
+   		
+	<extension
 			point="org.eclipse.ui.navigator.viewer">
 		<viewerContentBinding viewerId="org.eclipse.ui.navigator.ProjectExplorer">
 			<includes>
@@ -65,7 +90,7 @@
 			</includes>
 		</viewerContentBinding>
 	</extension>
-	
+   	
 	<extension
 			point="org.eclipse.ui.navigator.navigatorContent">
 		<navigatorContent
@@ -91,27 +116,21 @@
 					</and>
 				</or>
 			</possibleChildren> 
-			<!--<actionProvider
-					class="org.eclipse.wst.jsdt.internal.ui.navigator.JavaNavigatorViewActionProvider"
-					id="org.eclipse.wst.jsdt.ui.navigator.actions.ViewActions"> 
+			<actionProvider
+					class="fr.opensagres.eclipse.jsbuild.internal.ui.navigator.PackageExplorerOpenActionProvider"
+					id="fr.opensagres.eclipse.jsbuild.ui.navigator.actions.OpenActions"
+		         	overrides="org.eclipse.ui.navigator.resources.OpenActions">
 				<enablement>
 					<or>
 						<and>
-							<instanceof	value="org.eclipse.core.resources.IResource" />
-							<adapt type="org.eclipse.core.resources.IProject">
-								<test property="org.eclipse.core.resources.projectNature" value="org.eclipse.wst.jsdt.core.jsNature"/>
-							</adapt>
+                 			<instanceof	value="org.eclipse.core.resources.IResource" />
+							<test property="fr.opensagres.eclipse.jsbuild.core.isJSBuildFile" />
 						</and>
-						<and>
-							<instanceof value="org.eclipse.core.resources.IFile" />
-          					<test property="org.eclipse.core.resources.contentTypeId" value="org.eclipse.wst.jsdt.core.jsSource" />
-          				</and>
-						<instanceof value="org.eclipse.wst.jsdt.core.IJavaScriptElement" />
-						<instanceof value="org.eclipse.wst.jsdt.core.IJarEntryResource" />
-						<instanceof value="org.eclipse.wst.jsdt.internal.ui.packageview.PackageFragmentRootContainer" />
+						<instanceof value="fr.opensagres.eclipse.jsbuild.core.ITask" />
 					</or>
 				</enablement>
-			</actionProvider>				
+			</actionProvider>
+			<!--				
 			<actionProvider
 					class="org.eclipse.wst.jsdt.internal.ui.navigator.JavaNavigatorActionProvider"
 					id="org.eclipse.wst.jsdt.ui.navigator.actions.StandardActions"

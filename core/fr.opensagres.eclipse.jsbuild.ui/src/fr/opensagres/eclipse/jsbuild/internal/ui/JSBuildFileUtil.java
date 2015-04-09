@@ -88,57 +88,6 @@ public class JSBuildFileUtil {
 		return true;
 	}
 
-	public static void openInEditor(IWorkbenchPage page,
-			IEditorDescriptor editorDescriptor, IJSBuildFileNode node) {
-		IEditorPart editorPart = null;
-		IFile fileResource = node.getBuildFile().getBuildFileResource();
-		try {
-			if (editorDescriptor == null) {
-				editorPart = page.openEditor(new FileEditorInput(fileResource),
-						IEditorRegistry.SYSTEM_EXTERNAL_EDITOR_ID);
-			} else {
-				editorPart = page.openEditor(new FileEditorInput(fileResource),
-						editorDescriptor.getId());
-			}
-		} catch (PartInitException e) {
-			Logger.logException(MessageFormat.format(
-					JSBuildFileUIMessages.JSBuildFileUtil_0,
-					new Object[] { fileResource.getLocation().toOSString() }),
-					e);
-		}
-
-		Location location = node.getLocation();
-		if (location != null && location.getStart() > 0) {
-			int start = location.getStart();
-			int length = location.getLength();
-			ITextEditor textEditor = null;
-			if (editorPart instanceof ITextEditor)
-				textEditor = (ITextEditor) editorPart;
-			else if (editorPart instanceof IAdaptable)
-				textEditor = (ITextEditor) editorPart
-						.getAdapter(ITextEditor.class);
-			if (textEditor != null) {
-				//IDocument document = textEditor.getDocumentProvider()
-				//		.getDocument(editorPart.getEditorInput());
-				// int start = document.getLineOffset(line - 1);
-				textEditor.selectAndReveal(start, length);
-				page.activate(editorPart);
-			} else {
-				try {
-					IMarker marker = fileResource
-							.createMarker("org.eclipse.core.resources.textmarker");
-					marker.setAttribute("lineNumber", start);
-					editorPart = IDE.openEditor(page, marker, true);
-					marker.delete();
-				} catch (CoreException e) {
-					Logger.logException(MessageFormat.format(
-							JSBuildFileUIMessages.JSBuildFileUtil_0,
-							new Object[] { fileResource.getLocation()
-									.toOSString() }), e);
-				}
-			}
-		}
-	}
 
 	public static String getKnownBuildFileExtensionsAsPattern() {
 		return "js";

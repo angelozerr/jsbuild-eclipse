@@ -36,8 +36,8 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.ide.IDE;
 
 import fr.opensagres.eclipse.jsbuild.core.IJSBuildFileNode;
+import fr.opensagres.eclipse.jsbuild.internal.ui.EditorUtility;
 import fr.opensagres.eclipse.jsbuild.internal.ui.JSBuildFileUIPlugin;
-import fr.opensagres.eclipse.jsbuild.internal.ui.JSBuildFileUtil;
 import fr.opensagres.eclipse.jsbuild.internal.ui.Logger;
 
 /**
@@ -243,7 +243,8 @@ public class BuildFileOpenWithMenu extends ContributionItem {
 					&& editor.getId().equals(defaultEditor.getId())) {
 				defaultFound = true;
 			}
-			if (javaScriptEditor != null && editor.getId().equals(javaScriptEditor.getId())) {
+			if (javaScriptEditor != null
+					&& editor.getId().equals(javaScriptEditor.getId())) {
 				antFound = true;
 			}
 			alreadyAddedEditors.add(editor.getId());
@@ -290,7 +291,7 @@ public class BuildFileOpenWithMenu extends ContributionItem {
 	 *            editor
 	 */
 	private void openEditor(IEditorDescriptor editorDescriptor) {
-		JSBuildFileUtil.openInEditor(fPage, editorDescriptor, fNode);
+		EditorUtility.openInEditor(fPage, editorDescriptor, fNode);
 	}
 
 	/**
