@@ -1,8 +1,22 @@
+/**
+ *  Copyright (c) 2015 Angelo ZERR.
+ *  All rights reserved. This program and the accompanying materials
+ *  are made available under the terms of the Eclipse Public License v1.0
+ *  which accompanies this distribution, and is available at
+ *  http://www.eclipse.org/legal/epl-v10.html
+ *
+ *  Contributors:
+ *  Angelo Zerr <angelo.zerr@gmail.com> - initial API and implementation
+ */
 package fr.opensagres.eclipse.jsbuild.core.launchConfigurationTypes;
 
 import org.eclipse.core.externaltools.internal.IExternalToolConstants;
 
-public interface IAntLaunchConstants {
+/**
+ * Launch constants for JavaScritp build file.
+ *
+ */
+public interface IJSBuildFileLaunchConstants {
 
 	/**
 	 * String attribute indicating the Ant targets to execute. Default value is

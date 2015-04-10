@@ -50,7 +50,7 @@ import fr.opensagres.eclipse.jsbuild.core.IJSBuildFile;
 import fr.opensagres.eclipse.jsbuild.core.IJSBuildFileNode;
 import fr.opensagres.eclipse.jsbuild.core.ITask;
 import fr.opensagres.eclipse.jsbuild.core.JSBuildFileFactoryManager;
-import fr.opensagres.eclipse.jsbuild.core.launchConfigurationTypes.IAntLaunchConstants;
+import fr.opensagres.eclipse.jsbuild.core.launchConfigurationTypes.IJSBuildFileLaunchConstants;
 import fr.opensagres.eclipse.jsbuild.internal.ui.JSBuildFileUIPlugin;
 import fr.opensagres.eclipse.jsbuild.internal.ui.JSBuildFileUtil;
 import fr.opensagres.eclipse.jsbuild.internal.ui.launchConfigurations.JSBuildFileLaunchConfigurationMessages;
@@ -339,7 +339,7 @@ public class JSBuildFileLaunchShortcut implements ILaunchShortcut2 {
 					ILaunchConfigurationWorkingCopy copy = configuration
 							.getWorkingCopy();
 					String attrValue = targetAttribute;
-					copy.setAttribute(IAntLaunchConstants.ATTR_BUILDFILE_TASKS,
+					copy.setAttribute(IJSBuildFileLaunchConstants.ATTR_BUILDFILE_TASKS,
 							attrValue);
 					configuration = copy.doSave();
 				}

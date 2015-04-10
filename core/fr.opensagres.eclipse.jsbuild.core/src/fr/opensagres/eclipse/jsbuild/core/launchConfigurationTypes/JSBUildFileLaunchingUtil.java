@@ -1,3 +1,13 @@
+/**
+ *  Copyright (c) 2015 Angelo ZERR.
+ *  All rights reserved. This program and the accompanying materials
+ *  are made available under the terms of the Eclipse Public License v1.0
+ *  which accompanies this distribution, and is available at
+ *  http://www.eclipse.org/legal/epl-v10.html
+ *
+ *  Contributors:
+ *  Angelo Zerr <angelo.zerr@gmail.com> - initial API and implementation
+ */
 package fr.opensagres.eclipse.jsbuild.core.launchConfigurationTypes;
 
 import java.util.StringTokenizer;
@@ -5,10 +15,14 @@ import java.util.StringTokenizer;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.debug.core.ILaunchConfiguration;
 
-public class AntLaunchingUtil {
+/**
+ * Utilities for JavaScript build file launch.
+ *
+ */
+public class JSBUildFileLaunchingUtil {
 
 	public static final String ATTRIBUTE_SEPARATOR = ","; //$NON-NLS-1$;
-	
+
 	/**
 	 * Returns an array of targets to be run, or <code>null</code> if none are
 	 * specified (indicating the default target or implicit target should be
@@ -30,13 +44,14 @@ public class AntLaunchingUtil {
 		 */
 		if (attribute == null) {
 			attribute = configuration.getAttribute(
-					IAntLaunchConstants.ATTR_BUILDFILE_TASKS, (String) null);
+					IJSBuildFileLaunchConstants.ATTR_BUILDFILE_TASKS,
+					(String) null);
 			if (attribute == null) {
 				return null;
 			}
 		}
 
-		return AntLaunchingUtil.parseRunTargets(attribute);
+		return JSBUildFileLaunchingUtil.parseRunTargets(attribute);
 	}
 
 	/**
