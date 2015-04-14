@@ -10,29 +10,22 @@
  */
 package fr.opensagres.eclipse.jsbuild.internal.ui;
 
-import java.text.MessageFormat;
+import java.io.File;
+import java.util.Collection;
+import java.util.Collections;
 
 import org.eclipse.core.resources.IFile;
-import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
-import org.eclipse.jface.text.IDocument;
-import org.eclipse.ui.IEditorDescriptor;
-import org.eclipse.ui.IEditorPart;
-import org.eclipse.ui.IEditorRegistry;
-import org.eclipse.ui.IWorkbenchPage;
-import org.eclipse.ui.PartInitException;
-import org.eclipse.ui.ide.IDE;
-import org.eclipse.ui.part.FileEditorInput;
-import org.eclipse.ui.texteditor.ITextEditor;
+import org.eclipse.debug.core.ILaunchConfiguration;
 
 import fr.opensagres.eclipse.jsbuild.core.IJSBuildFileNode;
-import fr.opensagres.eclipse.jsbuild.core.Location;
+import fr.opensagres.eclipse.jsbuild.core.ITask;
+import fr.opensagres.eclipse.jsbuild.core.JSBuildFileFactoryManager;
 
 /**
  * Utilities for JavaScript build file.
@@ -88,7 +81,6 @@ public class JSBuildFileUtil {
 		return true;
 	}
 
-
 	public static String getKnownBuildFileExtensionsAsPattern() {
 		return "js";
 	}
@@ -96,5 +88,47 @@ public class JSBuildFileUtil {
 	public static IFile getFile(String fullPath) {
 		IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
 		return root.getFile(new Path(fullPath));
+	}
+
+	public static ITask[] getTargets(String path,
+			ILaunchConfiguration fLaunchConfiguration) throws CoreException {
+		File buildfile = getBuildFile(path);
+		if (buildfile == null) {
+			return null;
+		}
+		IFile file = getFileForLocation(buildfile.getAbsolutePath());
+		if (file == null) {
+			return null;
+		}
+		IJSBuildFileNode buildFileNode = JSBuildFileFactoryManager
+				.tryToCreate(file);
+		return getTasks(buildFileNode).toArray(ITask.EMPTY_TASK);
+	}
+
+	public static Collection<ITask> getTasks(IJSBuildFileNode buildFileNode) {
+		if (buildFileNode != null) {
+			try {
+				buildFileNode.getBuildFile().parseBuildFile();
+			} catch (CoreException e) {
+				Logger.logException("Error while loading tasks", e);
+			}
+			if (buildFileNode.hasChildren()) {
+				return buildFileNode.getChildNodes();
+			}
+		}
+		return Collections.emptyList();
+	}
+
+	/**
+	 * Return a buildfile from the specified location. If there isn't one return
+	 * null.
+	 */
+	private static File getBuildFile(String path) {
+		File buildFile = new File(path);
+		if (!buildFile.isFile() || !buildFile.exists()) {
+			return null;
+		}
+
+		return buildFile;
 	}
 }

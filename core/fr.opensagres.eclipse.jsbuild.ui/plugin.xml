@@ -17,6 +17,16 @@
   <extension-point id="labelProviders" name="%labelProviders.name"
 		schema="schema/labelProviders.exsd" />
 
+ 	<extension point="org.eclipse.core.runtime.adapters">
+		<factory 
+            class="fr.opensagres.eclipse.jsbuild.internal.ui.JSBuildFileAdapterFactory" 
+            adaptableType="fr.opensagres.eclipse.jsbuild.core.IJSBuildFileNode">
+            <adapter
+               type="org.eclipse.debug.ui.actions.ILaunchable">
+         </adapter>
+		</factory>
+	</extension>
+			
    <extension
          point="org.eclipse.ui.views">
       <view
@@ -99,9 +109,9 @@
 			point="org.eclipse.ui.navigator.navigatorContent">
 		<navigatorContent
 				activeByDefault="true"
-				contentProvider="fr.opensagres.eclipse.jsbuild.internal.ui.views.NavigatorJSBuildFileContentProvider"
+				contentProvider="fr.opensagres.eclipse.jsbuild.internal.ui.navigator.NavigatorJSBuildFileContentProvider"
 				id="fr.opensagres.eclipse.jsbuild.ui.jsBuildFileContent"
-				labelProvider="fr.opensagres.eclipse.jsbuild.internal.ui.views.NavigatorJSBuildFileLabelProvider"
+				labelProvider="fr.opensagres.eclipse.jsbuild.internal.ui.navigator.NavigatorJSBuildFileLabelProvider"
 				name="%commonNavigatorContentName"
 				priority="low">
 			<triggerPoints>

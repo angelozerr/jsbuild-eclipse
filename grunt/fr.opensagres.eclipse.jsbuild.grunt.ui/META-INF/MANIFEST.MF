@@ -14,5 +14,6 @@ Require-Bundle: org.eclipse.ui,
  fr.opensagres.eclipse.jsbuild.grunt.core,
  fr.opensagres.eclipse.jsbuild.core,
  org.eclipse.debug.ui,
- fr.opensagres.eclipse.jsbuild.ui
+ fr.opensagres.eclipse.jsbuild.ui,
+ org.eclipse.ui.externaltools
 Bundle-Activator: fr.opensagres.eclipse.jsbuild.grunt.internal.ui.GruntUIPlugin

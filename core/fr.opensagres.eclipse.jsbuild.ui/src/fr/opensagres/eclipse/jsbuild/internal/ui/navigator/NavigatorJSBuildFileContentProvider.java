@@ -8,7 +8,7 @@
  *  Contributors:
  *  Angelo Zerr <angelo.zerr@gmail.com> - initial API and implementation
  */
-package fr.opensagres.eclipse.jsbuild.internal.ui.views;
+package fr.opensagres.eclipse.jsbuild.internal.ui.navigator;
 
 import java.util.Set;
 
@@ -29,6 +29,7 @@ import org.eclipse.ui.navigator.PipelinedShapeModification;
 import org.eclipse.ui.navigator.PipelinedViewerUpdate;
 
 import fr.opensagres.eclipse.jsbuild.core.JSBuildFileFactoryManager;
+import fr.opensagres.eclipse.jsbuild.internal.ui.views.JSBuildFileContentProvider;
 
 /**
  * JavaScript build file content provider for using it with navigator (like
@@ -144,7 +145,9 @@ public class NavigatorJSBuildFileContentProvider extends
 					&& JSBuildFileFactoryManager.findFactoryId(file) != null) {
 				// refresh the tasks for the Build file (Gruntfile.js,
 				// gulpfile.js) inside the Project Explorer
-				fViewer.refresh(file);
+				if (!fViewer.isBusy()) {
+					fViewer.refresh(file);
+				}
 			}
 			return false;
 		}

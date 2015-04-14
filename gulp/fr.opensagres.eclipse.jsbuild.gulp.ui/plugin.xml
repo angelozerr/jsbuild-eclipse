@@ -55,10 +55,11 @@
                <count value="1"/>
                <iterate>
                  <or>
-					<and>
+                    <and>
                  		<instanceof	value="org.eclipse.core.resources.IResource" />
 						<test property="fr.opensagres.eclipse.jsbuild.core.isJSBuildFile" value="fr.opensagres.eclipse.jsbuild.core.gulp" />
-					</and>									
+					</and>
+					<instanceof	value="tern.eclipse.ide.gulp.internal.GulpTask" />									
 				 </or>
                </iterate>
              </with>

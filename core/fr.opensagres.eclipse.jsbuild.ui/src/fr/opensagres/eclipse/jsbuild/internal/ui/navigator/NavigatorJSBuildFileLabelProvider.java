@@ -8,13 +8,14 @@
  *  Contributors:
  *  Angelo Zerr <angelo.zerr@gmail.com> - initial API and implementation
  */
-package fr.opensagres.eclipse.jsbuild.internal.ui.views;
+package fr.opensagres.eclipse.jsbuild.internal.ui.navigator;
 
 import org.eclipse.ui.IMemento;
 import org.eclipse.ui.navigator.ICommonContentExtensionSite;
 import org.eclipse.ui.navigator.ICommonLabelProvider;
 
 import fr.opensagres.eclipse.jsbuild.core.IJSBuildFileNode;
+import fr.opensagres.eclipse.jsbuild.internal.ui.views.JSBuildFileLabelProvider;
 
 /**
  * * JavaScript build label provider for using it with navigator (like Project

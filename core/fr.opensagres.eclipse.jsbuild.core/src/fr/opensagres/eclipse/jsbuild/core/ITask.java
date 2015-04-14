@@ -16,6 +16,8 @@ package fr.opensagres.eclipse.jsbuild.core;
  */
 public interface ITask extends IJSBuildFileNode {
 
+	ITask[] EMPTY_TASK = new ITask[0];
+
 	/**
 	 * Returns true if this task is the default task and false otherwise.
 	 * 

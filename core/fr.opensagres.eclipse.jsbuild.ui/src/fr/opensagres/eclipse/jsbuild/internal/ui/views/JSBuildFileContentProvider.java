@@ -21,6 +21,7 @@ import org.eclipse.jface.viewers.Viewer;
 import fr.opensagres.eclipse.jsbuild.core.IJSBuildFileNode;
 import fr.opensagres.eclipse.jsbuild.core.ITask;
 import fr.opensagres.eclipse.jsbuild.core.JSBuildFileFactoryManager;
+import fr.opensagres.eclipse.jsbuild.internal.ui.JSBuildFileUtil;
 import fr.opensagres.eclipse.jsbuild.internal.ui.Logger;
 
 /**
@@ -67,23 +68,7 @@ public class JSBuildFileContentProvider implements ITreeContentProvider {
 		} else if (parentNode instanceof IJSBuildFileNode) {
 			buildFileNode = (IJSBuildFileNode) parentNode;
 		}
-
-		if (buildFileNode != null) {
-			try {
-				buildFileNode.getBuildFile().parseBuildFile();
-			} catch (CoreException e) {
-				Logger.logException("Error while loading tasks", e);
-			}
-			if (buildFileNode.hasChildren()) {
-				Collection<ITask> children = buildFileNode.getChildNodes();
-				return children.toArray();
-			}
-		}
-		/*
-		 * else if (parentNode instanceof IAntModel) { return new Object[] {
-		 * ((IAntModel) parentNode).getProjectNode() }; }
-		 */
-		return EMPTY_ARRAY;
+		return JSBuildFileUtil.getTasks(buildFileNode).toArray();
 	}
 
 	/*

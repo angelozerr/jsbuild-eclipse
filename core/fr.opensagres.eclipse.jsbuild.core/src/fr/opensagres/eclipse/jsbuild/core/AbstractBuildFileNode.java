@@ -10,11 +10,14 @@
  */
 package fr.opensagres.eclipse.jsbuild.core;
 
+import org.eclipse.core.runtime.PlatformObject;
+
 /**
  * Abstract class implementation for {@link IJSBuildFileNode}.
  *
  */
-public abstract class AbstractBuildFileNode implements IJSBuildFileNode {
+public abstract class AbstractBuildFileNode extends PlatformObject implements
+		IJSBuildFileNode {
 
 	@Override
 	public String getLabel() {
@@ -30,4 +33,5 @@ public abstract class AbstractBuildFileNode implements IJSBuildFileNode {
 	public Location getLocation(String text) {
 		return null;
 	}
+
 }
