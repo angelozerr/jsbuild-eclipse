@@ -9,6 +9,11 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<tycho-version>0.22.0</tycho-version>
 	</properties>
+	<scm>
+		<connection>https://github.com/angelozerr/jsbuild-eclipse.git</connection>
+		<developerConnection>https://github.com/angelozerr/jsbuild-eclipse.git</developerConnection>
+		<url>https://github.com/angelozerr/jsbuild-eclipse</url>
+	</scm>
 	<licenses>
 		<license>
 			<name>Eclipse Public License</name>
@@ -19,7 +24,7 @@
 	<modules>
 		<module>core</module>
 		<module>grunt</module>
-		<module>gulp</module>		
+		<module>gulp</module>
 		<module>jsbuild-eclipse-repository</module>
 	</modules>
 	<build>
@@ -60,8 +65,8 @@
 			</plugin>
 			<plugin>
 				<groupId>org.eclipse.tycho</groupId>
-          		<artifactId>tycho-compiler-plugin</artifactId>
-          		<version>${tycho-version}</version>
+				<artifactId>tycho-compiler-plugin</artifactId>
+				<version>${tycho-version}</version>
 				<configuration>
 					<source>1.6</source>
 					<target>1.6</target>
