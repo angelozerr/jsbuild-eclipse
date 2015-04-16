@@ -11,7 +11,7 @@
 	</properties>
 	<scm>
 		<connection>https://github.com/angelozerr/jsbuild-eclipse.git</connection>
-		<developerConnection>https://github.com/angelozerr/jsbuild-eclipse.git</developerConnection>
+		<developerConnection>scm:git:https://github.com/angelozerr/jsbuild-eclipse.git</developerConnection>
 		<url>https://github.com/angelozerr/jsbuild-eclipse</url>
 	</scm>
 	<licenses>
