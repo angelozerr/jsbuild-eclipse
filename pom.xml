@@ -115,8 +115,7 @@
 	</repositories>
 	<profiles>
 		<profile>
-			<!-- release profile (see parent pom) -->
-			<id>sonatype-oss-release</id>
+			<id>release</id>
 			<build>
 				<plugins>
 					<plugin>
