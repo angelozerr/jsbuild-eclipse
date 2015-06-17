@@ -7,6 +7,12 @@
   </parent>
   <packaging>eclipse-repository</packaging>
   <artifactId>jsbuild-eclipse-repository</artifactId>
+  <!-- see https://github.com/jutzig/github-release-plugin/issues/14 -->
+  <scm>
+		<connection>https://github.com/angelozerr/jsbuild-eclipse.git</connection>
+		<developerConnection>scm:git:https://github.com/angelozerr/jsbuild-eclipse.git</developerConnection>
+		<url>https://github.com/angelozerr/jsbuild-eclipse</url>
+	</scm>
   <build>
 		<extensions>
 			<!-- Enabling the use of FTP -->
@@ -75,8 +81,8 @@
 						</executions>
 						<configuration>
 							<overwriteArtifact>true</overwriteArtifact>
-							<tag>${project.artifactId}-${project.version}</tag>
-							<releaseName>${project.artifactId}-${project.version}</releaseName>
+							<tag>jsbuild-eclipse-${project.version}</tag>
+							<releaseName>jsbuild-eclipse-${project.version}</releaseName>
 							<artifact>${project.build.directory}/${project.artifactId}-${project.version}.zip</artifact>
 						</configuration>
 					</plugin>
