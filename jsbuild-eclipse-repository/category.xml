@@ -18,6 +18,9 @@
    <bundle id="minimal-json">
       <category name="Tern IDE"/>
    </bundle>
+   <bundle id="minimatch.java" >
+     <category name="Tern IDE"/>
+  </bundle>
    <bundle id="fr.opensagres.eclipse.jsbuild.core" version="1.0.0.qualifier">
       <category name="JavaScript Buildfile"/>
    </bundle>
