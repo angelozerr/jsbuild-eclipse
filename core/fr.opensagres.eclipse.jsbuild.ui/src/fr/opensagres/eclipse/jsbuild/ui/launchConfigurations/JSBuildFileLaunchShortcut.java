@@ -135,7 +135,7 @@ public class JSBuildFileLaunchShortcut implements ILaunchShortcut2 {
 			// }
 		} else if (node instanceof IJSBuildFile) {
 			ITask defaultTask = ((IJSBuildFile) node).getDefaultTask();
-			selectedTargetName = defaultTask.getName();
+			selectedTargetName = defaultTask != null ? defaultTask.getName() : null;
 		}
 
 		String configurationTypeId = node.getFactoryId();
