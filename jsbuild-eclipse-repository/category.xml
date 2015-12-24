@@ -21,28 +21,31 @@
    <bundle id="minimatch.java" >
      <category name="Tern IDE"/>
   </bundle>
-   <bundle id="fr.opensagres.eclipse.jsbuild.core" version="1.1.0.qualifier">
+   <bundle id="javax.websocket-api">
+      <category name="Tern IDE"/>
+   </bundle>  
+   <bundle id="fr.opensagres.eclipse.jsbuild.core" version="1.2.0.qualifier">
       <category name="JavaScript Buildfile"/>
    </bundle>
-   <bundle id="fr.opensagres.eclipse.jsbuild.ui" version="1.1.0.qualifier">
+   <bundle id="fr.opensagres.eclipse.jsbuild.ui" version="1.2.0.qualifier">
       <category name="JavaScript Buildfile"/>
    </bundle>
-   <bundle id="fr.opensagres.eclipse.jsbuild.gulp.core" version="1.1.0.qualifier">
+   <bundle id="fr.opensagres.eclipse.jsbuild.gulp.core" version="1.2.0.qualifier">
       <category name="Gulp"/>
    </bundle>
-   <bundle id="fr.opensagres.eclipse.jsbuild.gulp.ui" version="1.1.0.qualifier">
+   <bundle id="fr.opensagres.eclipse.jsbuild.gulp.ui" version="1.2.0.qualifier">
       <category name="Gulp"/>
    </bundle>
-   <bundle id="tern.eclipse.ide.gulp" version="1.1.0.qualifier">
+   <bundle id="tern.eclipse.ide.gulp" version="1.2.0.qualifier">
       <category name="Gulp"/>
    </bundle>
-   <bundle id="fr.opensagres.eclipse.jsbuild.grunt.core" version="1.1.0.qualifier">
+   <bundle id="fr.opensagres.eclipse.jsbuild.grunt.core" version="1.2.0.qualifier">
       <category name="Grunt"/>
    </bundle>
-   <bundle id="fr.opensagres.eclipse.jsbuild.grunt.ui" version="1.1.0.qualifier">
+   <bundle id="fr.opensagres.eclipse.jsbuild.grunt.ui" version="1.2.0.qualifier">
       <category name="Grunt"/>
    </bundle>
-   <bundle id="tern.eclipse.ide.grunt" version="1.1.0.qualifier">
+   <bundle id="tern.eclipse.ide.grunt" version="1.2.0.qualifier">
       <category name="Grunt"/>
    </bundle>
    <category-def name="Grunt" label="Grunt">
