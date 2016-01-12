@@ -8,7 +8,7 @@
  *  Contributors:
  *  Angelo Zerr <angelo.zerr@gmail.com> - initial API and implementation
  */
-package fr.opensagres.eclipse.jsbuild.internal.core;
+package fr.opensagres.eclipse.jsbuild.internal.ui;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
@@ -31,10 +31,10 @@ public class JSBuildFileTester extends
 	}
 
 	/**
-	 * Returns true if the receiver object is a JavaSCript build file and false
+	 * Returns true if the receiver object is a JavaScript build file and false
 	 * otherwise.
 	 * 
-	 * @return true if the receiver object is a JavaSCript build file and false
+	 * @return true if the receiver object is a JavaScript build file and false
 	 *         otherwise.
 	 */
 	@Override

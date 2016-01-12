@@ -57,7 +57,7 @@
                  <or>
 					<and>
                  		<instanceof	value="org.eclipse.core.resources.IResource" />
-						<test property="fr.opensagres.eclipse.jsbuild.core.isJSBuildFile" value="fr.opensagres.eclipse.jsbuild.core.grunt" />
+						<test property="fr.opensagres.eclipse.jsbuild.ui.isJSBuildFile" value="fr.opensagres.eclipse.jsbuild.core.grunt" />
 					</and>
 					<instanceof	value="tern.eclipse.ide.grunt.internal.GruntTask" />
 					<instanceof	value="tern.eclipse.ide.grunt.internal.GruntTarget" />
@@ -90,7 +90,7 @@
                  <or>
 					<and>
                  		<instanceof	value="org.eclipse.core.resources.IResource" />
-						<test property="fr.opensagres.eclipse.jsbuild.core.isJSBuildFile" value="fr.opensagres.eclipse.jsbuild.core.grunt" />
+						<test property="fr.opensagres.eclipse.jsbuild.ui.isJSBuildFile" value="fr.opensagres.eclipse.jsbuild.core.grunt" />
 					</and>
 				 </or>
                </iterate>

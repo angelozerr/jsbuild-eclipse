@@ -118,7 +118,7 @@
 			     <or>
 					<and>
                  		<instanceof	value="org.eclipse.core.resources.IResource" />
-						<test property="fr.opensagres.eclipse.jsbuild.core.isJSBuildFile" />
+						<test property="fr.opensagres.eclipse.jsbuild.ui.isJSBuildFile" />
 					</and>
 				</or>
 			</triggerPoints>
@@ -126,7 +126,7 @@
 				<or>
 					<and>
                  		<instanceof	value="org.eclipse.core.resources.IResource" />
-						<test property="fr.opensagres.eclipse.jsbuild.core.isJSBuildFile" />
+						<test property="fr.opensagres.eclipse.jsbuild.ui.isJSBuildFile" />
 					</and>
 				</or>
 			</possibleChildren> 
@@ -138,7 +138,7 @@
 					<or>
 						<and>
                  			<instanceof	value="org.eclipse.core.resources.IResource" />
-							<test property="fr.opensagres.eclipse.jsbuild.core.isJSBuildFile" />
+							<test property="fr.opensagres.eclipse.jsbuild.ui.isJSBuildFile" />
 						</and>
 						<instanceof value="fr.opensagres.eclipse.jsbuild.core.IJSBuildFileNode" />
 					</or>
@@ -255,5 +255,23 @@
 	         </selectionEnablement>
       </linkHelper>          
    </extension>
-              
+  
+  <extension point="org.eclipse.core.expressions.propertyTesters">
+		<propertyTester
+			id="fr.opensagres.eclipse.jsbuild.ui.JSBuildFileTester"
+			type="org.eclipse.core.resources.IResource"
+			namespace="fr.opensagres.eclipse.jsbuild.ui"
+			properties="isJSBuildFile"
+			class="fr.opensagres.eclipse.jsbuild.internal.ui.JSBuildFileTester">
+		</propertyTester>
+  </extension>
+	  
+  <!-- Need this startup to force the load of org.eclipse.core.expressions.propertyTesters -->            
+  <extension
+         point="org.eclipse.ui.startup">
+      <startup
+            class="fr.opensagres.eclipse.jsbuild.internal.ui.ActivationTriggerDummy">
+      </startup>
+   </extension>
+                 
 </plugin>

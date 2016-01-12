@@ -57,7 +57,7 @@
                  <or>
                     <and>
                  		<instanceof	value="org.eclipse.core.resources.IResource" />
-						<test property="fr.opensagres.eclipse.jsbuild.core.isJSBuildFile" value="fr.opensagres.eclipse.jsbuild.core.gulp" />
+						<test property="fr.opensagres.eclipse.jsbuild.ui.isJSBuildFile" value="fr.opensagres.eclipse.jsbuild.core.gulp" />
 					</and>
 					<instanceof	value="tern.eclipse.ide.gulp.internal.GulpTask" />									
 				 </or>
@@ -89,7 +89,7 @@
                  <or>
 					<and>
                  		<instanceof	value="org.eclipse.core.resources.IResource" />
-						<test property="fr.opensagres.eclipse.jsbuild.core.isJSBuildFile" value="fr.opensagres.eclipse.jsbuild.core.gulp" />
+						<test property="fr.opensagres.eclipse.jsbuild.ui.isJSBuildFile" value="fr.opensagres.eclipse.jsbuild.core.gulp" />
 					</and>
 				 </or>
                </iterate>
