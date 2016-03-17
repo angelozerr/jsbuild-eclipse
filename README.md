@@ -4,6 +4,8 @@ JavaScript Build Eclipse
 [![Build Status](https://secure.travis-ci.org/angelozerr/jsbuild-eclipse.png)](http://travis-ci.org/angelozerr/jsbuild-eclipse)
 [![Eclipse install](https://marketplace.eclipse.org/sites/all/modules/custom/marketplace/images/installbutton.png)](http://marketplace.eclipse.org/marketplace-client-intro?mpc_install=2295381)
 
+**Since Eclipse Neon will provide Gulp/Grunt support, I have decided to give up this project.** See https://wiki.eclipse.org/JSDT/JSDT_Neon_Plan and demo at https://www.youtube.com/watch?v=V7sZVTNHNYM
+
 `JavaScript Build Eclipse` is a set of plugins based on [tern.java](https://github.com/angelozerr/tern.java) which gives support for [Grunt](http://gruntjs.com/) and [Gulp](http://gulpjs.com/) (and more?). It provides the `Build Explorer` view which looks like the `Ant` view. The `Build Explorer` displays in a tree the tasks : 
 
 ![Build file View](https://github.com/angelozerr/jsbuild-eclipse/wiki/images/BuildFileView_Overview.png)
